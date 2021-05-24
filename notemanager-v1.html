@@ -1,8 +1,27 @@
 <head>
   <title>notemanager-v1</title>
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
 </head>
 
 <body>
+  <nav class="red">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="" class="brand-logo">NoteManager</a>
+        <ul id="nav-mobile" class="right high-on-med-and-down">
+          <li class="nav-item">
+            <a href="#addModal" class="waves-effect waves-light btn"
+              >add Note</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container">
     <h1>Welcome to Meteor!</h1>
 
@@ -12,6 +31,14 @@
       {{#each notes}} {{> note}} {{/each}}
     </ul>
   </div>
+
+  {{> add}}
+
+  <script>
+    $(document).ready(function () {
+      $(".modal").modal();
+    });
+  </script>
 </body>
 
 <!-- define themeplate hello -->
@@ -21,5 +48,23 @@
 </template>
 
 <template name="note">
-  <li class="collection-item">{{text}}</li>
+  <li class="collection-item">
+    {{text}}
+    <a href="#" class="delete-note secondary-content">
+      <i class="material-icons">clear</i>
+    </a>
+  </li>
+</template>
+
+<template name="add">
+  <!-- Modal Structure -->
+  <div id="addModal" class="modal">
+    <div class="modal-content">
+      <h3>Add Note</h3>
+      <form class="add-form">
+        <input type="text" name="text" id="" placeholder="add note" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
 </template>

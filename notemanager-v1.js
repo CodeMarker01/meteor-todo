@@ -1,3 +1,5 @@
+// import { Notes } from "./lib/collection";
+
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
@@ -17,11 +19,43 @@ if (Meteor.isClient) {
 
   Template.body.helpers({
     notes: [
-      { Text: "My note 1" },
-      { Text: "My note 2" },
-      { Text: "My note 3" },
-      { Text: "My note 4" },
+      { text: "My note 1" },
+      { text: "My note 2" },
+      { text: "My note 3" },
+      { text: "My note 4" },
     ],
+
+    //connect mongo
+    // notes() {
+    //   return Notes.find();
+    // },
+  });
+
+  Template.add.events({
+    "submit .add-form": function () {
+      event.preventDefault();
+      // console.log(123);
+
+      //get input value
+      const target = event.target;
+      const text = target.text.value;
+      console.log(text);
+
+      //Inseret note into collection
+      // Notes.insert({
+      //   text,
+      //   createAt: new Date(),
+      // });
+      // notes.push({ text: "new note" });
+
+      //Clear form
+      target.text.value = "";
+
+      //Close modal
+      $("#addModal").modal("close");
+
+      return false;
+    },
   });
 }
 
